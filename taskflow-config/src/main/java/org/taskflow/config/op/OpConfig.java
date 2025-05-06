@@ -15,9 +15,9 @@ public class OpConfig {
     /**
      * OP参数配置
      */
-    private OpParamConfig opParamConfig;
+    protected OpParamConfig opParamConfig;
     /**
      * 其它配置
      */
-    private Map<String, Object> extMap;
+    protected Map<String, Object> extMap;
 }
