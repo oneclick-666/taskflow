@@ -23,113 +23,113 @@ public class OperatorWrapper<P, V> {
     /**
      * OP入参解析器（json-path 方式解析）
      */
-    private static final DefaultParamParseOperator DEFAULT_PARAM_PARSE_OPERATOR = new DefaultParamParseOperator();
+    protected static final DefaultParamParseOperator DEFAULT_PARAM_PARSE_OPERATOR = new DefaultParamParseOperator();
     /**
      * 该wrapper的id，默认是Operator的全限定名
      */
-    private String id;
+    protected String id;
     /**
      * 参数来源是请求上下文，context 和 paramFromList都设置时，context 参数在前面
      * 集合中的元素与参数顺序一致
      */
-    private Object context;
+    protected Object context;
     /**
      * 参数来源是依赖的OP
      * 集合中的元素与参数顺序一致
      */
-    private List<String> paramFromList;
+    protected List<String> paramFromList;
     /**
      * OP节点配置
      * @see org.taskflow.config.op.OpConfig
      */
-    private String opConfig;
+    protected String opConfig;
     /**
      * 通过 json-path 方式解析参数时要执行的目标对象（具体执行的方法通过 opConfig 定义）
      */
-    private Object proxyObj;
+    protected Object proxyObj;
     /**
      * 该wrapper具体要执行的目标OP
      */
-    private IOperator<P, V> operator;
+    protected IOperator<P, V> operator;
     /**
      * 依赖该OP的后续OP集合
      */
-    private Set<OperatorWrapper<?, ?>> nextWrappers;
+    protected Set<OperatorWrapper<?, ?>> nextWrappers;
     /**
      * 依赖该OP的后续OP集合id
      */
-    private Map<String /*nextWrapperId*/, Boolean /*后续节点是否强依赖该节点*/> nextWrapperIdMap;
+    protected Map<String /*nextWrapperId*/, Boolean /*后续节点是否强依赖该节点*/> nextWrapperIdMap;
     /**
      * 该OP依赖的OP集合
      */
-    private Set<OperatorWrapper<?, ?>> dependWrappers;
+    protected Set<OperatorWrapper<?, ?>> dependWrappers;
     /**
      * 该OP依赖的OP集合id
      */
-    private Map<String /*dependWrapperId*/, Boolean /*当前节点是否强依赖前置节点*/> dependWrapperIdMap;
+    protected Map<String /*dependWrapperId*/, Boolean /*当前节点是否强依赖前置节点*/> dependWrapperIdMap;
     /**
      * 强依赖于该OP的后续wrapper集合，是nextWrappers的子集
      */
-    private Set<OperatorWrapper<?, ?>> selfIsMustSet;
+    protected Set<OperatorWrapper<?, ?>> selfIsMustSet;
     /**
      * 节点的入度，不同于常规的定义，这里的入度只计算强依赖的节点，当 indegree=0 时，当前OP才能执行，在一个编排流程中，一定满足如下条件
      * indegree <= dependWrappers.size()
      */
-    private AtomicInteger indegree = new AtomicInteger(0);
+    protected AtomicInteger indegree = new AtomicInteger(0);
     /**
      * OP返回的结果
      */
-    private volatile OperatorResult<V> operatorResult = OperatorResult.defaultResult();
+    protected volatile OperatorResult<V> operatorResult = OperatorResult.defaultResult();
     /**
      * 当前节点执行的状态
      */
-    private AtomicInteger wrapperState = new AtomicInteger(WrapperState.INIT);
+    protected AtomicInteger wrapperState = new AtomicInteger(WrapperState.INIT);
     /**
      * 执行该节点的线程
      */
-    private Thread thread;
+    protected Thread thread;
     /**
      * 绑定的DAG执行引擎
      */
-    private DagEngine engine;
+    protected DagEngine engine;
     /**
      * 是否已经初始化，只初始化一次
      */
-    private boolean init;
+    protected boolean init;
     /**
      * OP执行时动态解析的参数，调用回调接口时使用
      */
-    private P param;
+    protected P param;
     /**
      * 条件判断，根据前驱节点的结果判断是否可以执行该节点
      * 注意：依赖的节点全都是强依赖时，不起作用，主要使用在弱依赖的场景
      * 比如：1 依赖 2、3、4，节点1执行的条件是2、3、4中执行完的个数 >=2, 此时可以通过条件判断，如果不满足条件时返回false
      */
-    private ICondition condition;
+    protected ICondition condition;
     /**
      * 分支选择，根据当前节点的结果判断要执行的分支
      */
-    private IChoose chooseBranch;
+    protected IChoose chooseBranch;
     /**
      * 节点选择，根据当前节点的结果判断要执行的后继节点(组)
      */
-    private IChoose chooseOp;
+    protected IChoose chooseOp;
     /**
      * OP执行过程的监听器
      */
-    private Map<OperatorEventEnum, List<OperatorListener>> listenerEventMap;
+    protected Map<OperatorEventEnum, List<OperatorListener>> listenerEventMap;
     /**
      * OP执行前的回调
      */
-    private ICallable before;
+    protected ICallable before;
     /**
      * OP执行后的回调
      */
-    private ICallable after;
+    protected ICallable after;
     /**
      * 当前节点所属的节点组
      */
-    private OperatorWrapperGroup group;
+    protected OperatorWrapperGroup group;
 
     public OperatorWrapper(){
 

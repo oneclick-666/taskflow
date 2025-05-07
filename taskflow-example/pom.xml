@@ -6,7 +6,7 @@
 
     <groupId>org.taskflow</groupId>
     <artifactId>taskflow-example</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-oneclick-SNAPSHOT</version>
 
     <properties>
         <jdk.version>1.8</jdk.version>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>org.taskflow</groupId>
             <artifactId>taskflow-core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0-oneclick-SNAPSHOT</version>
         </dependency>
 
         <dependency>

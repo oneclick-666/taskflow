@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.taskflow</groupId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-oneclick-SNAPSHOT</version>
     <artifactId>taskflow-config</artifactId>
 
     <properties>
@@ -17,7 +17,7 @@
         <dependency>
             <groupId>org.taskflow</groupId>
             <artifactId>taskflow-common</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0-oneclick-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
